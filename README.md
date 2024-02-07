@@ -1,3 +1,6 @@
-# launch-SMS-bot
-python script to retrieve upcoming rocket launch schedule and send user a text summarizing the launch schedule
-s
+# rocket-launch-SMS-bot
+Our species' efforts to explore beyond planet Earth are marked by an ever-increasing number of rocket launches. These launches serve to not only advance the interest of human beings, but also the interest of specific countries and companies. The consequences range from extracting resources at the lunar south pole to the creation of space junk by Starlink satellites. Part of being an informed citizen is understanding what we're sending into the Earth. I also find it pretty interesting to learn about the goals for launches.
+
+With this motivation I created a python script which sends me an SMS message twice a week summarizing the upcoming rocket launch schedule. The schedule is pulled from RocketLaunch.live, whose API sources from all major space agencies such as NASA, CNSA and ISRO. I use the python json package to parse the API payload and format a message. The version in production sends a short text message due to SMS limitations. I also include a framework for creating html for an email which is possible through Twilio's email sender API. I did not use this option as to avoid additional costs. Increasing the "num_of_launches_provided" variable will increase the number of upcoming launches included in the automated message.
+
+Finally, I use the Advanced Python Scheduler library to execute the automated message function twice a week at a designated time. I keep this python script running on my server and twice a week AP Scheduler triggers the auomated text. In future iterations of this project I could use a serverless platform such as AWS lambda to trigger the automation. However, for a simple python script like this one I did not feel the overhead of setting up AWS was justified.
